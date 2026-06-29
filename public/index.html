@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusKart — College Essentials & Buy-Sell Platform</title>
+  <meta name="description" content="Exclusive online shop and buy & sell marketplace for college students across India. Books, stationery, hostel essentials, electronics, and more.">
+  
+  <!-- Premium Poppins Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap Icons for clean, lightweight visuals -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <!-- Chart.js CDN for Admin Analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Razorpay Checkout Integration -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  
+  <!-- Custom Premium Stylesheets -->
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Sticky Glassmorphic Header -->
+  <header id="main-header" class="header-glass">
+    <div class="header-container">
+      <a href="#/" class="logo-brand">
+        <span class="logo-symbol">CK</span>
+        <span class="logo-text">Campus<span class="text-accent">Kart</span></span>
+      </a>
+      
+      <!-- Collapsible Search Bar -->
+      <form id="global-search-form" class="search-bar-container">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" id="global-search-input" placeholder="Search textbooks, calculators, laptops..." autocomplete="off">
+        <div id="search-suggestions" class="search-suggestions-dropdown hidden"></div>
+      </form>
+
+      <!-- Navigation Actions -->
+      <nav class="nav-links">
+        <a href="#/shop" class="nav-link"><i class="bi bi-bag-dash"></i> Shop</a>
+        <a href="#/buy-sell" class="nav-link"><i class="bi bi-arrow-left-right"></i> Buy & Sell</a>
+        <a href="#/about" class="nav-link nav-link-desktop">About</a>
+        <a href="#/contact" class="nav-link nav-link-desktop">Contact</a>
+      </nav>
+
+      <!-- User Actions Panel -->
+      <div class="header-actions">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle-btn" class="action-btn" title="Toggle Theme" aria-label="Toggle Theme">
+          <i class="bi bi-moon-stars"></i>
+        </button>
+
+        <!-- Cart Trigger -->
+        <button id="cart-trigger-btn" class="action-btn cart-badge-wrapper" title="Shopping Cart" aria-label="Shopping Cart">
+          <i class="bi bi-cart3"></i>
+          <span id="cart-badge-count" class="cart-badge hidden">0</span>
+        </button>
+
+        <!-- User Dropdown Menu -->
+        <div class="user-dropdown-container">
+          <button id="user-menu-btn" class="action-btn" title="User Menu" aria-label="User Menu">
+            <i class="bi bi-person-circle"></i>
+          </button>
+          <div id="user-dropdown-menu" class="user-dropdown hidden">
+            <!-- Dynamic Actions based on Auth State -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  </header>
+
+  <!-- Main View Injection Point -->
+  <main id="app">
+    <!-- Screen View Renderers Injected Here -->
+    <div class="full-screen-loader">
+      <div class="loader-spinner"></div>
+      <p class="loader-message">Loading CampusKart...</p>
+    </div>
+  </main>
+
+  <!-- Slide-over Right Shopping Cart Drawer -->
+  <div id="cart-drawer-overlay" class="drawer-overlay hidden">
+    <div id="cart-drawer" class="drawer">
+      <div class="drawer-header">
+        <h3>Shopping Cart</h3>
+        <button id="cart-close-btn" class="close-btn" title="Close Cart" aria-label="Close Cart">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      
+      <div class="drawer-body">
+        <div id="cart-items-container" class="cart-items-list">
+          <!-- Dynamically populated cart items -->
+        </div>
+      </div>
+
+      <div class="drawer-footer">
+        <!-- Coupon Code Field -->
+        <div class="coupon-section">
+          <div class="coupon-input-group">
+            <input type="text" id="cart-coupon-input" placeholder="Enter Coupon (e.g. CAMPUS20)">
+            <button id="apply-coupon-btn" class="btn btn-secondary">Apply</button>
+          </div>
+          <div id="coupon-feedback" class="coupon-feedback"></div>
+        </div>
+
+        <!-- Price Summary -->
+        <div class="price-summary-container">
+          <div class="price-summary-row">
+            <span>Subtotal</span>
+            <span id="cart-summary-subtotal">Rs. 0</span>
+          </div>
+          <div id="cart-summary-discount-row" class="price-summary-row discount-row hidden">
+            <span>Discount (<span id="applied-coupon-code"></span>)</span>
+            <span id="cart-summary-discount">-Rs. 0</span>
+          </div>
+          <div class="price-summary-row">
+            <span>Estimated Shipping</span>
+            <span id="cart-summary-shipping">Rs. 0</span>
+          </div>
+          <hr class="price-summary-divider">
+          <div class="price-summary-row grand-total-row">
+            <span>Grand Total</span>
+            <span id="cart-summary-total">Rs. 0</span>
+          </div>
+        </div>
+
+        <!-- Action Triggers -->
+        <button id="cart-checkout-btn" class="btn btn-primary btn-block">
+          Proceed to Checkout <i class="bi bi-arrow-right"></i>
+        </button>
+        <button id="cart-continue-btn" class="btn btn-text btn-block">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Application JS Code -->
+  <script src="/js/utils.js" type="module"></script>
+  <script src="/js/api.js" type="module"></script>
+  <script src="/js/app.js" type="module"></script>
+</body>
+</html>
