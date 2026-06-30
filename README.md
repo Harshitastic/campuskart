@@ -1,5 +1,7 @@
 # CampusKart — College E-Commerce & Peer-to-Peer Classifieds Platform
 
+Live Demo : campuskart-phi.vercel.app
+
 CampusKart is a premium, full-stack, responsive web application designed exclusively for college campuses in India. It integrates a platform-managed e-commerce store (selling academic textbooks, calculators, engineering kits, and hostel essentials) with a commission-free student **Buy & Sell** exchange directory.
 
 The application features a clean SPA (Single Page Application) frontend, a modular Express backend, and a Mongoose-based database, fully optimized for serverless deployments on Vercel.
