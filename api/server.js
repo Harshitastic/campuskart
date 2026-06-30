@@ -5,9 +5,6 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const connectDB = require('../config/db');
 
-// Connect to MongoDB
-connectDB();
-
 const app = express();
 
 // Configure CORS - Allow cross-origin requests with credentials
@@ -23,6 +20,20 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' })); // Support larger Base64 payloads
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
+
+// Middleware to ensure DB connection is active
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error('Database connection error in middleware:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Database connection failed'
+    });
+  }
+});
 
 // Serve static frontend assets
 app.use(express.static(path.join(__dirname, '../public')));
